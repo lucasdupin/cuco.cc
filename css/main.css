@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
+	box-sizing: border-box;
 }
 html, body {
 	width: 100%;
@@ -39,4 +40,65 @@ h1, #next {
 iframe {
 	width: 100%;
 	height: 100%;
+}
+
+#about{
+	background: black;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: white;
+	font-family: "Prestige Elite Std", "Courier New", Courier, monospace;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 40px;
+	display: none;
+}
+#about a{
+	color: white;
+}
+#about .close{
+	text-decoration: none;
+}
+#about p {
+	margin: 30px;
+}
+.contact{
+	padding-top: 20px;
+}
+nav {
+	font-size: 12px;
+	position: absolute;
+	left: 50%;
+	bottom: 220px;
+}
+nav a {
+	left: 0;
+	top: 0;
+	width: 1000px;
+	display: block;
+	position: absolute;
+	text-align: left;
+	padding-left: 33px;
+	/*width: 220px;*/
+	text-decoration: none;
+	transform-origin:left center;
+	-webkit-transform-origin:left center;
+	-moz-transform-origin:left center;
+}
+nav a:hover summary {
+	visibility: visible;
+}
+nav a span {
+	display: inline-block;
+	padding: 0 10px;
+}
+nav summary {
+	display: inline-block;
+	visibility: hidden;
+	transform-origin:left center;
+	-webkit-transform-origin:left center;
+	-moz-transform-origin:left center;
 }
