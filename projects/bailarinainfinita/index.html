@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta property="og:title" content="bailarina infinita"/>
+	<meta property="og:type" content="movie"/>
+	<meta property="fb:admins" content="1117394699"/>
+	<meta property="og:url" content="http://bailarinainfinita.tv/" />
+	<meta property="og:image" content="http://bailarinainfinita.tv/icone.jpg" />
+	<meta property="og:description" content="uma e-instalação concebida por alexandre paschoalini
+ musicada por thiago galego
+ programada por lucas dupin
+ e rodopiada por thany sanches" />
+    
+        <title>&infin;</title>
+        <style type="text/css" media="screen">
+	    html, body {
+		background-color: #fff;
+	    }
+            #aligner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	    }
+        #content{
+            margin: -344px -285px;
+            width: 600px;
+            height: 690px;
+            background: url(bg_site.jpg) center center no-repeat;
+            position: relative;
+        }
+	    #like{
+		position: absolute;
+		top: 3px;
+		left: 3px;
+	    }
+	    #click{
+		right: 0;
+		bottom: 0;
+		position: absolute;
+		display: none;
+	    }
+            .player{
+                display: block;
+		margin: 3px 200px;
+            }          
+        </style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            LOADING = 0;
+            PLAYING = 1;
+            NUM_VIDEOS = 5;
+
+            appState = LOADING;
+
+            //Load youtube api
+            var tag = document.createElement('script');
+            tag.src = "http://www.youtube.com/player_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            //All players
+            players = new Array(NUM_VIDEOS);
+            
+            //Create player
+            function onYouTubePlayerAPIReady() {
+                var scale= 0.85
+		videos = ['8uHiGL4DHcI', 'mQB4DgpRmAc', 'MPuuzdOMmfM', 'TOZhfK1jpbk', 'M6ahuisraOA'];
+                for(i=0; i<NUM_VIDEOS; i++){
+                    players[i] = new YT.Player('player' + i, {
+                        width: 200*scale,
+                        height: 150*scale,
+                        videoId: videos[i],
+                        playerVars: {controls: 0, showinfo: 0, rel: 0},
+                        events: {
+                            onReady : onPlayerReady,
+                            onStateChange: onPlayerStateChange
+                        }
+                    });
+                }
+            }
+
+            function onPlayerReady(e){
+                //Player ready... ask to play (start loading)
+                e.target.playVideo();
+            }
+            
+            function onPlayerStateChange(e){
+            
+                //Do the check
+                if(appState == LOADING){
+                    //Once video is ready to play, pause it since we'll need to wait for the others
+                    if(e.target.state == 1){
+                        e.target.pauseVideo();
+                    }
+                
+                    playersPaused = 0;
+                    for(i=0; i< NUM_VIDEOS; i++){
+                        if(players[i].state == 2) //paused
+                            playersPaused++;
+                    }
+            
+                    if(playersPaused == NUM_VIDEOS){ //Every player is ready to play. let's do so 
+                        for(i=0; i< NUM_VIDEOS; i++) setTimeout(function(n){
+				players[n].playVideo();
+				players[n].seekTo(0);
+			}, 30*i, i);
+                        appState = PLAYING;
+
+			setTimeout(function(){$("#click").fadeIn(2000)}, 20000);
+                    }
+            
+                } else if (appState == PLAYING) {
+                    if (e.target.state == 0)
+                        e.target.seekTo(4.01);
+                }
+            
+                
+            }
+        </script>
+    </head>
+    <body>
+
+	<div id="aligner">
+	<div id="content">
+            <br>
+	        <div id="player0" class="player"></div>
+	        <div id="player1" class="player"></div>
+	        <div id="player2" class="player"></div>
+	        <div id="player3" class="player"></div>
+	        <div id="player4" class="player"></div>
+		<img src="click.jpg" alt="desclique, clique" id="click" />
+	</div>
+	</div>
+    </body>
+</html>
