@@ -14,11 +14,26 @@
 			overflow: hidden;
 		}
 		iframe {
-			height: 82%;
-			margin: 6% 4%;
-			width: 92%;
+			position: absolute;
+			width: 1200px;
+			height: 800px;
+			left: 50%;
+			top: 60px;
 		}
 	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	$(window).resize(function(){
+		h = $(document).height() - (60 + 75);
+		w = h / 1280 * 1920
+		$('iframe').css({width: w, height: h, marginLeft: -w/2});
+	})
+	$(function(){
+		$(window).resize()
+	})
+
+	</script>
 </head>
 <body>
 	<iframe src="http://diarioaleatorio.co" frameborder="0"></iframe>
