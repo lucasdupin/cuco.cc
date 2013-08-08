@@ -1,0 +1,39 @@
+html, body {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url(../img/wall.png);
+	text-align: center;
+}
+
+.shadow {
+	width: 100%;
+}
+.head {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.body {
+	width: 100%;
+	margin-top: -70px;
+	vertical-align: bottom;
+}
+ article {
+ 	margin-bottom: 100px;
+ }
+
+ .bodyGroup {
+ 	position: relative;
+ }
+ .bodyGroup a {
+ 	position: absolute;
+ 	left: 60%;
+ 	top: 40%;
+ 	width: 40%;
+ 	height: 40%;
+ }
